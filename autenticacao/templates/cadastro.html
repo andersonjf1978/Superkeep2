@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'autenticacao/css/css.css' %}">
+
+{% endblock %}
+
+
+{% block 'titulo' %}Superkeep{% endblock %}
+
+{% block 'body' %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <div class="superkeep_sidebar">
+                    
+                    <h2 class="superkeep">
+                        <img class="img_superkeep_sidebar" src="{% static 'autenticacao/img/superkeep.png' %}">
+                    </h2>
+                   
+
+                </div>
+
+                
+
+                
+            </div>
+
+            <div class="col-md-9">
+                <div class="area_cadastrar">
+                    {% if messages %}
+                        <br>
+                            {% for message in messages %}
+                                <div class="alert {{message.tags}}">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                    {% endif %}    
+                    <h2 class="titulo">Crie sua conta</h2>
+                    <hr>
+                    
+                    <form action="{% url 'cadastro' %}" method="POST">{% csrf_token %}
+                         <div class="row">
+                            <div class="col-md-4">
+                                <span class="bold">Nr. de Polícia</span>
+                                <input class="form-control form-control-lg" name="usuario" type="text" placeholder="_ _ _ _ _ _ - _">
+                            </div>
+                             <div class="col-md-8">
+                                 <span class="bold">E-mail</span>
+                                 <input class="form-control form-control-lg" name="email" type="text" placeholder="Digite seu E-mail...">
+                            </div>
+                         </div>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="bold">Posto / Graduação</span>
+                                <select class="form-control form-control-lg" name="posto" aria-label="Posto/Graduação">
+                                    <option selected>Selecione</option>
+                                    <option value="1">SD</option>
+                                    <option value="2">CB</option>
+                                    <option value="3">3 SGT</option>
+                                    <option value="4">2 SGT</option>
+                                    <option value="5">1 SGT</option>
+                                    <option value="6">SUB TEN</option>
+                                    <option value="7">2 TEN</option>
+                                    <option value="8">1 TEN</option>
+                                    <option value="9">CAP</option>
+                                    <option value="10">MAJ</option>
+                                    <option value="11">TEN CEL</option>
+                                    <option value="12">CEL</option>
+                                  </select>                                
+                            </div>
+                            <div class="col-md-8">
+                                <span class="bold">Nome de Guerra</span>
+                                <input class="form-control form-control-lg" name="nome_guerra" type="text" placeholder="Digite seu Nome de Guerra...">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md">
+                                <span class="bold">Senha</span>
+                                <input class="form-control form-control-lg" name="senha" type="password" placeholder="Digite sua senha...">
+                            </div>
+
+                            <div class="col-md">
+                                <span class="bold">Confirmar senha</span>
+                                <input class="form-control form-control-lg" name="confirmar_senha" type="password" placeholder="Confirme sua senha...">
+                            </div>
+                        </div>
+                        <br>
+                        <button class="btn-first">Registrar</button>
+
+                    </form>
+
+                    <h3 style="position: absolute; bottom: 65px; font-weight: bold">Já possui uma conta ?&nbsp <a href={% url 'logar' %} class="btn btn-success">Logar</a> </h3>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+{% endblock %}
